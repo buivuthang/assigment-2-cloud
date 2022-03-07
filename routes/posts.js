@@ -1,30 +1,30 @@
 const express = require('express')
 const router = express.Router()
 
-//hien thi form de tao post
 const Post = require('../models/Post')
-    //hien thi tat ca cac bai viet
+
 router.get('/', async(req, res) => {
     const posts = await Post.find().lean().sort({ date: -1 })
     res.render('posts/index', { posts })
 })
 
-//test the model
 router.get('/add', (req, res) => {
     res.render('posts/add')
 })
 
-//tao post moi
+//add
 router.post('/', async(req, res) => {
-    const { title, text } = req.body
+    const { title, price, description, photo } = req.body
 
     let errors = []
 
-    if (!title) errors.push({ msg: 'title is required' })
-    if (!text) errors.push({ msg: 'text is required' })
-    if (errors.length > 0) res.render('posts/add', { errors, title, text })
+    if (!title) errors.push({ msg: 'Title is required' })
+    if (!price) errors.push({ msg: 'Price is required' })
+    if (!description) errors.push({ msg: 'Description is required' })
+    if (!photo) errors.push({ msg: 'Photo URL is required' })
+    if (errors.length > 0) res.render('posts/add', { errors, title, price, description, photo })
     else {
-        const newPostData = { title, text }
+        const newPostData = { title, price, description, photo }
         const newPost = new Post(newPostData)
         await newPost.save()
         res.redirect('/posts')
@@ -40,7 +40,7 @@ router.get('/edit/:id', async(req, res) => {
 //cap nhap thay doi 
 router.put('/:id', async(req, res) => {
     const { title, text } = req.body
-    await Post.findOneAndUpdate({ _id: req.params.id }, { title, text })
+    await Post.findOneAndUpdate({ _id: req.params.id }, { title, price, description, photo })
     res.redirect('/posts')
 })
 
@@ -49,4 +49,5 @@ router.delete('/:id', async(req, res) => {
     await Post.findOneAndRemove({ _id: req.params.id })
     res.redirect('/posts')
 })
+
 module.exports = router

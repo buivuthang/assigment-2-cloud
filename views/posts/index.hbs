@@ -1,0 +1,15 @@
+{{#each posts}}
+<div class="card card-body mb-2 text-center">
+    <h4>{{title}}</h4>
+    <p>{{price}} VND</p>
+    <p>{{description}}</p>
+    <img src="{{photo}}" alt="" width="200" style="display: block; margin: 0 auto; border: 3px solid grey;" class="mb-2">
+    <a href="/posts/edit/{{_id}}" class="btn btn-dark btn-block mb-2">Update</a>
+    <form action="/posts/{{_id}}?_method=DELETE" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="submit" value="Delete" class="btn btn-danger btn-block">
+    </form>
+</div>
+{{else}}
+<p>There's no product available</p>
+{{/each}}

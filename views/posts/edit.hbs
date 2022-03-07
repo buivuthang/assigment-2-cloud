@@ -1,0 +1,23 @@
+<div class="card card-body">
+    <h3>Update products</h3>
+    <form action="/posts/{{post._id}}?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT" />
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" class="form-control" name="title" required value="{{post.title}}">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" name="price" required value="{{post.price}}">
+        </div>
+        <div class="form-group">
+            <label for="text">Description</label>
+            <textarea name="description" class="form-control" required >{{post.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="text">Photo</label>
+            <input type="text" class="form-control" name="photo" required value="{{post.photo}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

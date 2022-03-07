@@ -7,7 +7,15 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    text: {
+    price: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    photo: {
         type: String,
         required: true
     },

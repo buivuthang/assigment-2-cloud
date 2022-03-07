@@ -1,0 +1,22 @@
+<div class="card card-body">
+    <h3>Add new products</h3>
+    <form action="/posts" method="post">
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" class="form-control" name="title" required value="{{title}}">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" name="price" required value="{{price}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" required>{{description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="text">Photo</label>
+            <input type="text" class="form-control" name="photo" required value="{{photo}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Add new product</button>
+    </form>
+</div>
