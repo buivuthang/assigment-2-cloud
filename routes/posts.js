@@ -39,7 +39,7 @@ router.get('/edit/:id', async(req, res) => {
 
 //update
 router.put('/:id', async(req, res) => {
-    const { title, text } = req.body
+    const { title, price, description, photo } = req.body
     await Post.findOneAndUpdate({ _id: req.params.id }, { title, price, description, photo })
     res.redirect('/posts')
 })
