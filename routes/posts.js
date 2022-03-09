@@ -14,7 +14,7 @@ router.get('/add', (req, res) => {
 
 //add
 router.post('/', async(req, res) => {
-    const { title, price, description, photo } = req.body
+    const { title, price, category, description, photo } = req.body
 
     let errors = []
 
@@ -22,9 +22,9 @@ router.post('/', async(req, res) => {
     if (!price) errors.push({ msg: 'Price is required' })
     if (!description) errors.push({ msg: 'Description is required' })
     if (!photo) errors.push({ msg: 'Photo URL is required' })
-    if (errors.length > 0) res.render('posts/add', { errors, title, price, description, photo })
+    if (errors.length > 0) res.render('posts/add', { errors, title, price, category, description, photo })
     else {
-        const newPostData = { title, price, description, photo }
+        const newPostData = { title, price, category, description, photo }
         const newPost = new Post(newPostData)
         await newPost.save()
         res.redirect('/posts')
@@ -39,8 +39,8 @@ router.get('/edit/:id', async(req, res) => {
 
 //update
 router.put('/:id', async(req, res) => {
-    const { title, price, description, photo } = req.body
-    await Post.findOneAndUpdate({ _id: req.params.id }, { title, price, description, photo })
+    const { title, price, category, description, photo } = req.body
+    await Post.findOneAndUpdate({ _id: req.params.id }, { title, price, category, description, photo })
     res.redirect('/posts')
 })
 
