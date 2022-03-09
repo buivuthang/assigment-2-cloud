@@ -31,20 +31,20 @@ router.post('/', async(req, res) => {
     }
 })
 
-//hien thi form 
+//show 
 router.get('/edit/:id', async(req, res) => {
     const post = await Post.findOne({ _id: req.params.id }).lean()
     res.render('posts/edit', { post })
 })
 
-//cap nhap thay doi 
+//update
 router.put('/:id', async(req, res) => {
     const { title, text } = req.body
     await Post.findOneAndUpdate({ _id: req.params.id }, { title, price, description, photo })
     res.redirect('/posts')
 })
 
-//xoa bai viet
+//delete
 router.delete('/:id', async(req, res) => {
     await Post.findOneAndRemove({ _id: req.params.id })
     res.redirect('/posts')
