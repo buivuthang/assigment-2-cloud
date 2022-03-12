@@ -8,14 +8,11 @@ const posts = require('./routes/posts')
 
 const app = express()
 
-
 app.engine('hbs', exphbs.engine({
     defaultLayout: 'main',
     extname: '.hbs'
 }))
 app.set('view engine', 'hbs')
-
-
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
